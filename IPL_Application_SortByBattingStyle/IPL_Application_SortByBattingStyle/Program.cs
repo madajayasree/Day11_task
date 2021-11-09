@@ -10,47 +10,64 @@ namespace IPL_Application_SortByBattingStyle
     {
         static void Main(string[] args)
         {
-           
-
-                Console.WriteLine("Enter how many playes you want to enter");
-                int player_count;
-                player_count = Convert.ToInt32(Console.ReadLine());
-
-                Player[] player_obj = new Player[player_count];
-                for (int i = 0; i < player_count; i++)
-                {
-                    {
-                        Console.WriteLine("Enter {0} player details separated by kamas in the format of teamname,country, id,name,age,battingstyle,bowlingstyle", i + 1);
-                        string jobDetails = Console.ReadLine();
-                        Player p = Player.createPlayer(jobDetails);
-                        player_obj[i] = p;
-                    }
 
 
-                }
-                
-                //Asking users choice for sorting team players
+            Console.WriteLine("Enter how many playes you want to enter");
+            int player_count;
+            player_count = Convert.ToInt32(Console.ReadLine());
 
-            Console.WriteLine("press1:sort by TeamName, press2:sort by BattingStyle");
+            Player[] player_obj = new Player[player_count];
+            for (int i = 0; i < player_count; i++)
+            {
+
+                Console.WriteLine("Enter {0} player details separated by kamas in the format of teamname,country, id,name,age,battingstyle,bowlingstyle", i + 1);
+                string jobDetails = Console.ReadLine();
+                Player p = Player.createPlayer(jobDetails);
+                player_obj[i] = p;
+
+
+
+            }
+
+
+
+            //Asking users choice for sorting team players
+
+            Console.WriteLine("1:sort by TeamName, 2:sort by BattingStyle");
             int press = int.Parse(Console.ReadLine());
-            switch(press)
+            Player_BO obj_playerBo = new Player_BO();
+            Player[] sortedPlayerDetails = null;
+
+            switch (press)
             {
                 case 1:
-                    Console.WriteLine("Sorting by Team name");
-                    Player_BO p = new Player_BO();
-                    Array.Sort(player_obj, p);
+                    Console.WriteLine("Sorting by Team name in asecnding order");
+                    sortedPlayerDetails = obj_playerBo.searchByTeamName(player_obj);
+
                     break;
                 case 2:
-                    Console.WriteLine("Sorting by batting Style");
-                    Array.Sort(player_obj);
+                    Console.WriteLine("Sorting by Batting Style  in desending order");
+
+                    sortedPlayerDetails = obj_playerBo.searchByBattingStyle(player_obj);
+
                     break;
-
-
+                default:
+                    Console.WriteLine("Invalid choice");
+                    break;
             }
-            foreach (var item in player_obj)
+            if (sortedPlayerDetails != null)
             {
-                     Console.WriteLine(item);
+
+                foreach (var item in sortedPlayerDetails)
+                {
+                    Console.WriteLine(item);
+                }
             }
+
+                
+
+
+
 
 
 
@@ -59,3 +76,4 @@ namespace IPL_Application_SortByBattingStyle
         }
     }
 }
+

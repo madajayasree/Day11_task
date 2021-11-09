@@ -34,6 +34,11 @@ namespace IPL_Application_SortByBattingStyle
             return base.GetHashCode();
         }
 
+        public override bool Equals(object obj)
+        {
+            Team t = (Team)obj;
+            return this.TeamName.Equals(t.TeamName);
+        }
 
 
     }

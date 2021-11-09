@@ -6,14 +6,29 @@ using System.Threading.Tasks;
 
 namespace IPL_Application_SortByBattingStyle
 {
-    class Player_BO : IComparer<Team>
+    class Player_BO 
     {
-        // sorting by team name using Icomparer
-            public int Compare(Team x, Team y)
-            {
-                return x.TeamName.CompareTo(y.TeamName);
-            }
-        
+                       
+        public Player[] searchByTeamName(Player[] playersList)
+        {
+            Player[] results = null;
+            sortByTeamName ascSortByTeam = new sortByTeamName();
+            Array.Sort(playersList, ascSortByTeam);
+            results = playersList;
+            return results;
+
+        }
+
+        public Player[] searchByBattingStyle(Player[] playersList)
+        {
+            Player[] results=null;
+            sortDesPlayer sdp = new sortDesPlayer();
+            Array.Sort(playersList, sdp);
+            Array.Reverse(playersList);
+            results = playersList;
+            return results;
+
+        }
 
     }
 

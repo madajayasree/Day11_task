@@ -32,6 +32,15 @@ namespace IPL_Application_SortByBattingStyle
             BowlingStyle = bowlingStyle;
         }
 
+        public Player(int id, string name, int age, string battingStyle, string bowlingStyle)
+        {
+            Id = id;
+            Name = name;
+            Age = age;
+            BattingStyle = battingStyle;
+            BowlingStyle = bowlingStyle;
+        }
+
         //Properties
         public int Id { get => id; set => id = value; }
               public string Name { get => name; set => name = value; }
@@ -54,7 +63,7 @@ namespace IPL_Application_SortByBattingStyle
         public override bool Equals(object obj)
         {
             Player p = (Player)obj;
-            return this.battingStyle.Equals(p.battingStyle);
+            return this.Name.Equals(p.Name) && this.TeamName.Equals(p.TeamName);
         }
 
         //Creating a players method
